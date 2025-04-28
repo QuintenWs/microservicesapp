@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catalog-db
+  template:
+    metadata:
+      labels:
+        app: catalog-db
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: my-secret-pw
+            - name: MYSQL_ALLOW_EMPTY_PASSWORD
+              value: "true"
+            - name: MYSQL_DATABASE
+              value: watchndb
+            - name: MYSQL_USER
+              value: catalog_user
+            - name: MYSQL_PASSWORD
+              value: default_password
+          resources:
+            limits:
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalog-db
+spec:
+  selector:
+    app: catalog-db
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306

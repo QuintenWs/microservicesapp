@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catalog
+  template:
+    metadata:
+      labels:
+        app: catalog
+    spec:
+      containers:
+        - name: catalog
+          image: your-docker-repo/catalog:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              memory: "256Mi"
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalog
+spec:
+  selector:
+    app: catalog
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
