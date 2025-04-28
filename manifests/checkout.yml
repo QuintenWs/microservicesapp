@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: checkout
-          image: your-docker-repo/checkout:latest
+          image: QuintenWs/docker-compose-checkout:latest
           ports:
             - containerPort: 8080
           env:

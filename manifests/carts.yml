@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: carts
-          image: your-docker-repo/carts:latest
+          image: QuintenWs/docker-compose-carts:latest
           ports:
             - containerPort: 8080
           env:

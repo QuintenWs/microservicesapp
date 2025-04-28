@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: orders
-          image: your-docker-repo/orders:latest
+          image: QuintenWs/docker-compose-orders:latest
           ports:
             - containerPort: 8080
           env:

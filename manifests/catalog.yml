@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: catalog
-          image: your-docker-repo/catalog:latest
+          image: QuintenWs/docker-compose-catalog:latest
           ports:
             - containerPort: 8080
           resources:
